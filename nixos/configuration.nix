@@ -24,11 +24,16 @@
   programs.sway.enable = true;
   programs.thunderbird.enable = true;
   
+  # Virtualization.
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+
   # User Accounts.
   users.users.crab = {
     isNormalUser = true;
     description = "Crab";
-    extraGroups = [ "networkManager", "wheel" ];
+    extraGroups = [ "networkManager", "wheel", "libvirtd" ];
     packages = with pkgs; [];
   };
   
