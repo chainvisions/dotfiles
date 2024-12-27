@@ -12,6 +12,7 @@
   # Networking.
   networking.hostName = "nixos";
   networking.networkManager.enable = true;
+  networking.firewall.enable = true;
 
   # Time & Locale.
   time.timeZone = "America/Denver";
@@ -77,7 +78,15 @@
     pkgs.rustc
     pkgs.cargo
   ];
-  
+ 
+  # Security.
+  security.auditd.enable = true;
+  security.audit.enable = true;
+  security.audit.rules = [
+    "-a exit,always -F arch=b64 -S execve"
+  ];
+  services.printing.enable = false;
+
   # NixOS release version.
   system.stateVersion = "24.11";
 }
